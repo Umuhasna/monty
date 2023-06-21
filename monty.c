@@ -23,17 +23,11 @@ int main(int argument_count, char **argument_values)
 	stack_t *new_node = NULL;
 
 	if (argument_count != 2)
-	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		error_message_no_args("USAGE: monty file\n");
 
 	file = fopen(argument_values[1], "r");
 	if (file == NULL)
-	{
-		printf("Error: Can't open file %s\n", argument_values[1]);
-		exit(EXIT_FAILURE);
-	}
+		error_file_not_found(argument_values[1]);
 
 	while ((read = getline(&line, &line_length, file)) != -1)
 	{
@@ -45,20 +39,16 @@ int main(int argument_count, char **argument_values)
 				new_node = (stack_t *) malloc(sizeof(stack_t));
 				if (new_node == NULL)
 				{
-					printf("Error: malloc failed\n");
 					free_array_of_tokens(array_of_tokens);
-					array_of_tokens = NULL;
-					exit(EXIT_FAILURE);
+					error_message_no_args("Error: malloc failed\n");
 				}
 				if (array_of_tokens[1] != NULL)
 				{
 					new_node-> n = atoi(array_of_tokens[1]);
 					new_node->prev = NULL;
 					new_node->next = NULL;
-					if( !opcode_handler(array_of_tokens, &new_node, line_number))
-					{
-						printf("Error: opcode failure\n");
-					}
+					if (!opcode_handler(array_of_tokens, &new_node, line_number))
+						error_message_no_args("Error: opcode failure\n");
 					free_array_of_tokens(array_of_tokens);
 					array_of_tokens = NULL;
 					continue;
@@ -68,17 +58,13 @@ int main(int argument_count, char **argument_values)
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n",
-					line_number, array_of_tokens[0]);
 			free_array_of_tokens(array_of_tokens);
-			array_of_tokens = NULL;
-			exit(EXIT_FAILURE);
+			error_opcode_not_found(line_number, array_of_tokens[0]);
 		}
 		free_array_of_tokens(array_of_tokens);
 		array_of_tokens = NULL;
 		line_number++;
 	}
-
 	free_linked_list();
 	fclose(file);
 	free(line);
