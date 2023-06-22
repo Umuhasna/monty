@@ -33,11 +33,23 @@ char *_itoa(int command_num)
 {
 	char *str = malloc(sizeof(char) * (32 + 1));
 	int i = 0;
+	int is_negative = 0;
 
+	if (command_num < 0)
+	{
+		is_negative = 1;
+		command_num = -(command_num);
+	}
 	do {
 		str[i++] = command_num % 10 + '0';
 		command_num /= 10;
 	} while (command_num > 0);
+
+	if (is_negative)
+	{
+		str[i] = '-';
+		i++;
+	}
 	str[i] = '\0';
 	rev_string(str);
 

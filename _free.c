@@ -35,3 +35,17 @@ void free_array_of_tokens(char **array_of_tokens)
 		free(array_of_tokens[index]);
 	free(array_of_tokens);
 }
+
+/**
+ * free_main_end - free array of tokens in the main function
+ * @line: tokenized string
+ * @file: file stream
+ *
+ * Return: void
+ */
+void free_main_end(char **line, FILE **file)
+{
+	free_linked_list();
+	fclose(*file);
+	free(*line);
+}

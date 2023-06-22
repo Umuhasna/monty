@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -49,8 +50,12 @@ void _push_handler(stack_t **stack, unsigned int line_number);
 void _pall_handler(stack_t **stack, unsigned int line_number);
 void free_linked_list(void);
 void free_array_of_tokens(char **array_of_tokens);
+void free_main_end(char **line, FILE **file);
 int error_message_no_args(char *error_message);
 int error_file_not_found(char *file_name);
-int error_opcode_not_found(int line_number, char *non_valid_opcode);
+int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode);
+int error_push_non_digit(unsigned int line_number);
 char *_itoa(int line_num);
+int is_number(char *number);
+int stack_push_handler(char **array_of_tokens, unsigned int *line_number);
 #endif
