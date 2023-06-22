@@ -15,6 +15,11 @@ int is_opcode(char **array_of_tokens)
 	const instruction_t opcodes[] = {
 		{"push", _push_handler},
 		{"pall", _pall_handler},
+		{"pint", _pint_handler},
+		{"pop", _pop_handler},
+		{"swap", _swap_handler},
+		{"add", _add_handler},
+		{"nop", _nop_handler},
 		{NULL, NULL}
 	};
 
@@ -49,6 +54,11 @@ int opcode_handler(char **array_of_tokens,
 	const instruction_t opcodes[] = {
 		{"push", _push_handler},
 		{"pall", _pall_handler},
+		{"pint", _pint_handler},
+		{"pop", _pop_handler},
+		{"swap", _swap_handler},
+		{"add", _add_handler},
+		{"nop", _nop_handler},
 		{NULL, NULL}
 	};
 	if (array_of_tokens == NULL)

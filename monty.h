@@ -48,6 +48,11 @@ int opcode_handler(char **array_of_tokens,
 		stack_t **stack, unsigned int line_number);
 void _push_handler(stack_t **stack, unsigned int line_number);
 void _pall_handler(stack_t **stack, unsigned int line_number);
+void _pint_handler(stack_t **stack, unsigned int line_number);
+void _pop_handler(stack_t **stack, unsigned int line_number);
+void _swap_handler(stack_t **stack, unsigned int line_number);
+void _add_handler(stack_t **stack, unsigned int line_number);
+void _nop_handler(stack_t **stack, unsigned int line_number);
 void free_linked_list(void);
 void free_array_of_tokens(char **array_of_tokens);
 void free_main_end(char **line, FILE **file);
@@ -56,9 +61,15 @@ int error_file_not_found(char *file_name);
 int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode,
 		char **array_of_tokens);
 int error_push_non_digit(unsigned int line_number);
+int error_stack_empty_pint(unsigned int line_number);
+int error_stack_empty_pop(unsigned int line_number);
+int error_swap(unsigned int line_number);
+int error_add(unsigned int line_number);
 char *_itoa(int line_num);
 int is_number(char *number);
 int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
 		char **line, FILE **file);
 int array_of_tokens_counter(char **array_of_tokens);
+void _print_number(int line_number);
+int _list_length(void);
 #endif
