@@ -119,7 +119,7 @@ int main(int argument_count, char **argument_values)
 						free_main_end(&line, &file);
 						error_stack_empty_pchar(line_number);
 					}
-					if (top->n >= 0 && top->n <= 127)
+					if (top->n <= 0 || top->n >= 127)
 					{
 						free_array_of_tokens(array_of_tokens);
 						free_main_end(&line, &file);
