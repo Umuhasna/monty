@@ -39,7 +39,36 @@ int main(int argument_count, char **argument_values)
 					if (stack_push_handler(array_of_tokens,
 								&line_number, &line, &file))
 						continue;
-				opcode_handler(array_of_tokens, NULL, line_number);
+				if (strcmp(array_of_tokens[0], "pint") == 0)
+					if (top == NULL)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_stack_empty_pint(line_number);
+					}
+				if (strcmp(array_of_tokens[0], "pop") == 0)
+					if (top == NULL)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_stack_empty_pop(line_number);
+					}
+				if (strcmp(array_of_tokens[0], "swap") == 0)
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_swap(line_number);
+					}
+				if (strcmp(array_of_tokens[0], "add") == 0)
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_add(line_number);
+					}
+				if (strcmp(array_of_tokens[0], "nop") != 0)
+					opcode_handler(array_of_tokens, NULL, line_number);
 			}
 			else
 			{
@@ -55,6 +84,10 @@ int main(int argument_count, char **argument_values)
 	return (0);
 }
 
+/**
+ * do_betty - do betts
+ * Return: void
+ */
 void do_betty(void)
 {
 }
