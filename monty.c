@@ -67,6 +67,50 @@ int main(int argument_count, char **argument_values)
 						free_main_end(&line, &file);
 						error_add(line_number);
 					}
+				if (strcmp(array_of_tokens[0], "sub") == 0)
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_opp(line_number, "sub");
+					}
+				if (strcmp(array_of_tokens[0], "div") == 0)
+				{
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_opp(line_number, "div");
+					}
+					if (_list_length() >= 2 && top->n == 0)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_divion_by_zero(line_number);
+					}
+				}
+				if (strcmp(array_of_tokens[0], "mul") == 0)
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_opp(line_number, "mul");
+					}
+				if (strcmp(array_of_tokens[0], "mod") == 0)
+				{
+					if (_list_length() < 2)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_opp(line_number, "mod");
+					}
+					if (_list_length() >= 2 && top->n == 0)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_divion_by_zero(line_number);
+					}
+				}
 				if (strcmp(array_of_tokens[0], "nop") != 0)
 					opcode_handler(array_of_tokens, NULL, line_number);
 			}

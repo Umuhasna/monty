@@ -19,6 +19,10 @@ int is_opcode(char **array_of_tokens)
 		{"pop", _pop_handler},
 		{"swap", _swap_handler},
 		{"add", _add_handler},
+		{"sub", _sub_handler},
+		{"div", _div_handler},
+		{"mul", _mul_handler},
+		{"mod", _mod_handler},
 		{"nop", _nop_handler},
 		{NULL, NULL}
 	};
@@ -58,6 +62,10 @@ int opcode_handler(char **array_of_tokens,
 		{"pop", _pop_handler},
 		{"swap", _swap_handler},
 		{"add", _add_handler},
+		{"sub", _sub_handler},
+		{"div", _div_handler},
+		{"mul", _mul_handler},
+		{"mod", _mod_handler},
 		{"nop", _nop_handler},
 		{NULL, NULL}
 	};
