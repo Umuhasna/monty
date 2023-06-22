@@ -112,7 +112,7 @@ int main(int argument_count, char **argument_values)
 					}
 				}
 				if (strcmp(array_of_tokens[0], "nop") != 0
-						|| strcmp(array_of_tokens[0], "#") != 0)
+						|| array_of_tokens[0][0] != '#')
 					opcode_handler(array_of_tokens, NULL, line_number);
 			}
 			else
