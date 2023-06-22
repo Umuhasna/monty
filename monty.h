@@ -40,9 +40,11 @@ typedef struct instruction_s
 
 extern stack_t *top;
 
-char **malloc_array(char **array, size_t size_of_malloc, char *error_message);
-char *malloc_char(char **string, size_t size_of_malloc, char *error_message);
-char **array_maker(char *input, char *delimiter);
+char *malloc_char(char **string, size_t size_of_malloc,
+		FILE **file, char **line);
+char **malloc_array(char **array, size_t size_of_malloc,
+		FILE **file, char **line);
+char **array_maker(char *input, char *delimiter, FILE **file, char **line);
 int is_opcode(char **array_of_tokens);
 int opcode_handler(char **array_of_tokens,
 		stack_t **stack, unsigned int line_number);

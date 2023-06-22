@@ -35,6 +35,8 @@ char *_itoa(int command_num)
 	int i = 0;
 	int is_negative = 0;
 
+	if (str == NULL)
+		error_message_no_args("Error: malloc failed\n");
 	if (command_num < 0)
 	{
 		is_negative = 1;
