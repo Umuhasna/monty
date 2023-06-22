@@ -78,6 +78,8 @@ int main(int argument_count, char **argument_values)
 			}
 		}
 		free_array_of_tokens(array_of_tokens);
+		free(line);
+		line = NULL;
 		line_number++;
 	}
 	free_main_end(&line, &file);
