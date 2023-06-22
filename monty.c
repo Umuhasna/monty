@@ -1,6 +1,7 @@
 #include "monty.h"
 
-stack_t *top = NULL;
+void no_betty(void);
+stack_t *top;
 
 /**
  * main - short description
@@ -21,6 +22,7 @@ int main(int argument_count, char **argument_values)
 	unsigned int line_number = 1;
 	char **array_of_tokens = NULL;
 
+	top = NULL;
 	if (argument_count != 2)
 		error_message_no_args("USAGE: monty file\n");
 	file = fopen(argument_values[1], "r");
@@ -51,4 +53,8 @@ int main(int argument_count, char **argument_values)
 	}
 	free_main_end(&line, &file);
 	return (0);
+}
+
+void do_betty(void)
+{
 }
