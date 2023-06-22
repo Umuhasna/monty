@@ -10,6 +10,7 @@ int error_message_no_args(char *error_message)
 {
 	int size = strlen(error_message);
 
+	fflush(stderr);
 	write(STDERR_FILENO, error_message, size);
 	exit(EXIT_FAILURE);
 }
@@ -31,6 +32,7 @@ int error_file_not_found(char *file_name)
 	strcat(error_str, file_name);
 	strcat(error_str, "\n\0");
 
+	fflush(stderr);
 	write(STDERR_FILENO, error_str, strlen(error_str));
 	free(error_str);
 	exit(EXIT_FAILURE);
@@ -59,6 +61,7 @@ int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode,
 	strcat(error_str, non_valid_opcode);
 	strcat(error_str, "\n\0");
 
+	fflush(stderr);
 	write(STDERR_FILENO, error_str, strlen(error_str));
 	free(error_str);
 	free(line_number_str);
@@ -85,6 +88,7 @@ int error_push_non_digit(unsigned int line_number)
 	strcat(error_str, ": usage: push integer");
 	strcat(error_str, "\n\0");
 
+	fflush(stderr);
 	write(STDERR_FILENO, error_str, strlen(error_str));
 	free(error_str);
 	free(line_number_str);
