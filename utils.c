@@ -11,13 +11,13 @@
  *
  * Return: return description
  */
-char *malloc_char(char **string, size_t size_of_malloc, char *error_message)
+char *malloc_char(char **string, size_t size_of_malloc,
+		__attribute((unused)) char *error_message)
 {
 	*string = (char *) malloc(sizeof(char) * size_of_malloc);
 	if (string == NULL)
 	{
-		perror(error_message);
-		return (NULL);
+		error_message_no_args("Error: malloc failed\n");
 	}
 	return (*string);
 }
@@ -33,13 +33,13 @@ char *malloc_char(char **string, size_t size_of_malloc, char *error_message)
  *
  * Return: return description
  */
-char **malloc_array(char **array, size_t size_of_malloc, char *error_message)
+char **malloc_array(char **array, size_t size_of_malloc,
+		__attribute((unused)) char *error_message)
 {
 	array = (char **) malloc(sizeof(char *) * size_of_malloc);
 	if (array == NULL)
 	{
-		perror(error_message);
-		return (NULL);
+		error_message_no_args("Error: malloc failed\n");
 	}
 	return (array);
 }

@@ -30,6 +30,7 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
 		{
 			free_array_of_tokens(array_of_tokens);
 			free_main_end(line, file);
+			free(new_node);
 			error_push_non_digit(*line_number);
 		}
 		new_node->n = atoi(array_of_tokens[1]);
@@ -45,6 +46,7 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
 	{
 		free_array_of_tokens(array_of_tokens);
 		free_main_end(line, file);
+		free(new_node);
 		error_push_non_digit(*line_number);
 	}
 	return (0);
