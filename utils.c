@@ -43,3 +43,21 @@ char **malloc_array(char **array, size_t size_of_malloc, char *error_message)
 	}
 	return (array);
 }
+
+/**
+ * array_of_tokens_counter - short description
+ *
+ * Description: long description
+ *
+ * @array_of_tokens: reference to string
+ *
+ * Return: return description
+ */
+int array_of_tokens_counter(char **array_of_tokens)
+{
+	int count = 0;
+
+	while (array_of_tokens[count])
+		count++;
+	return (count);
+}

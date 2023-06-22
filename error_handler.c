@@ -40,10 +40,11 @@ int error_file_not_found(char *file_name)
  * error_opcode_not_found - Printing custom error for not found command
  * @line_number: counter
  * @non_valid_opcode: string
- *
+ * @array_of_tokens: array
  * Return: void
  */
-int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode)
+int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode,
+		char **array_of_tokens)
 {
 	char *error_str;
 	char *line_number_str = _itoa(line_number);
@@ -61,6 +62,7 @@ int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode)
 	write(STDERR_FILENO, error_str, strlen(error_str));
 	free(error_str);
 	free(line_number_str);
+	free_array_of_tokens(array_of_tokens);
 	exit(EXIT_FAILURE);
 }
 
