@@ -33,7 +33,7 @@ int main(int argument_count, char **argument_values)
 		array_of_tokens = array_maker(line, " \n\t", &file, &line);
 		if (array_of_tokens != NULL &&  array_of_tokens[0] != NULL)
 		{
-			if (is_opcode(array_of_tokens))
+			if (is_opcode(array_of_tokens) || array_of_tokens[0][0] == '#')
 			{
 				if (strcmp(array_of_tokens[0], "push") == 0)
 					if (stack_push_handler(array_of_tokens,
