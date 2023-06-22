@@ -7,10 +7,13 @@
  *
  * @array_of_tokens: argument_1 description
  * @line_number: argument_2 description
+ * @file: file stream
+ * @line: line pointer
  *
  * Return: return description
  */
-int stack_push_handler(char **array_of_tokens, unsigned int *line_number)
+int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
+		char **line, FILE **file)
 {
 	stack_t *new_node;
 
@@ -18,6 +21,7 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number)
 	if (new_node == NULL)
 	{
 		free_array_of_tokens(array_of_tokens);
+		free_main_end(line, file);
 		error_message_no_args("Error: malloc failed\n");
 	}
 	if (array_of_tokens[1] != NULL)
@@ -25,13 +29,13 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number)
 		if (!is_number(array_of_tokens[1]))
 		{
 			free_array_of_tokens(array_of_tokens);
+			free_main_end(line, file);
 			error_push_non_digit(*line_number);
 		}
 		new_node->n = atoi(array_of_tokens[1]);
 		new_node->prev = NULL;
 		new_node->next = NULL;
-		if (!opcode_handler(array_of_tokens, &new_node, *line_number))
-			error_message_no_args("Error: opcode failure\n");
+		opcode_handler(array_of_tokens, &new_node, *line_number);
 		free_array_of_tokens(array_of_tokens);
 		array_of_tokens = NULL;
 		*line_number = *line_number + 1;
@@ -40,6 +44,7 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number)
 	else
 	{
 		free_array_of_tokens(array_of_tokens);
+		free_main_end(line, file);
 		error_push_non_digit(*line_number);
 	}
 	return (0);

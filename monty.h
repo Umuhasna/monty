@@ -53,9 +53,12 @@ void free_array_of_tokens(char **array_of_tokens);
 void free_main_end(char **line, FILE **file);
 int error_message_no_args(char *error_message);
 int error_file_not_found(char *file_name);
-int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode);
+int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode,
+		char **array_of_tokens);
 int error_push_non_digit(unsigned int line_number);
 char *_itoa(int line_num);
 int is_number(char *number);
-int stack_push_handler(char **array_of_tokens, unsigned int *line_number);
+int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
+		char **line, FILE **file);
+int array_of_tokens_counter(char **array_of_tokens);
 #endif

@@ -29,23 +29,22 @@ int main(int argument_count, char **argument_values)
 	while ((read = getline(&line, &line_length, file)) != -1)
 	{
 		array_of_tokens = array_maker(line, " \n");
-		if (array_of_tokens == NULL || array_of_tokens[0] == NULL)
+		if (array_of_tokens != NULL &&  array_of_tokens[0] != NULL)
 		{
-			free_array_of_tokens(array_of_tokens);
-			line_number++;
-			continue;
-		}
-		else if (is_opcode(array_of_tokens))
-		{
-			if (strcmp(array_of_tokens[0], "push") == 0)
-				if (stack_push_handler(array_of_tokens, &line_number))
-					continue;
-			opcode_handler(array_of_tokens, NULL, line_number);
-		}
-		else
-		{
-			error_opcode_not_found(line_number, array_of_tokens[0]);
-			free_array_of_tokens(array_of_tokens);
+			if (is_opcode(array_of_tokens))
+			{
+				if (strcmp(array_of_tokens[0], "push") == 0)
+					if (stack_push_handler(array_of_tokens,
+								&line_number, &line, &file))
+						continue;
+				opcode_handler(array_of_tokens, NULL, line_number);
+			}
+			else
+			{
+				free_main_end(&line, &file);
+				error_opcode_not_found(line_number, array_of_tokens[0],
+						array_of_tokens);
+			}
 		}
 		free_array_of_tokens(array_of_tokens);
 		line_number++;
