@@ -23,7 +23,8 @@ int error_message_no_args(char *error_message)
 int error_file_not_found(char *file_name)
 {
 	char *error_str;
-	int size = strlen("Error: Can't open file ") + strlen(file_name) + strlen("\n") + 1;
+	int size = strlen("Error: Can't open file ") +
+		strlen(file_name) + strlen("\n") + 1;
 
 	malloc_char(&error_str, size, "error_not_found Error: malloc error");
 	strcpy(error_str, "Error: Can't open file ");
@@ -37,23 +38,49 @@ int error_file_not_found(char *file_name)
 
 /**
  * error_opcode_not_found - Printing custom error for not found command
- * @file_name: counter
+ * @line_number: counter
  * @non_valid_opcode: string
  *
  * Return: void
  */
-int error_opcode_not_found(int line_number, char *non_valid_opcode)
+int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode)
 {
 	char *error_str;
 	char *line_number_str = _itoa(line_number);
-	int size = strlen("L") + strlen(line_number_str) + strlen(": unknown instruction ")
-			+ strlen(non_valid_opcode) + strlen("\n") + 1;
+	int size = strlen("L") + strlen(line_number_str) +
+		strlen(": unknown instruction ") + strlen(non_valid_opcode)
+		+ strlen("\n") + 1;
 
 	malloc_char(&error_str, size, "error_not_found Error: malloc error");
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": unknown instruction ");
 	strcat(error_str, non_valid_opcode);
+	strcat(error_str, "\n\0");
+
+	write(STDERR_FILENO, error_str, strlen(error_str));
+	free(error_str);
+	free(line_number_str);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * error_push_non_digit - Printing custom error for not found command
+ * @line_number: counter
+ *
+ * Return: void
+ */
+int error_push_non_digit(unsigned int line_number)
+{
+	char *error_str;
+	char *line_number_str = _itoa(line_number);
+	int size = strlen("L") + strlen(line_number_str) +
+		strlen(": usage: push integer") + strlen("\n") + 1;
+
+	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	strcpy(error_str, "L");
+	strcat(error_str, line_number_str);
+	strcat(error_str, ": usage: push integer");
 	strcat(error_str, "\n\0");
 
 	write(STDERR_FILENO, error_str, strlen(error_str));

@@ -1,6 +1,34 @@
 #include "monty.h"
 
 /**
+ * _print_number - short description
+ *
+ * Description: long description
+ *
+ * @line_number: argument_2 description
+ *
+ * Return: return description
+ */
+void _print_number(int line_number)
+{
+	char *number_str = _itoa(line_number);
+	char *str;
+	int size = strlen(number_str) + strlen("\n\0");
+
+	str = (char *) malloc(sizeof(char) + size);
+	if (str == NULL)
+	{
+		printf("malloc\n");
+		exit(EXIT_FAILURE);
+	}
+	strcpy(str, number_str);
+	strcat(str, "\n\0");
+	write(STDOUT_FILENO, str, strlen(str));
+	free(number_str);
+	free(str);
+}
+
+/**
  * _pall_handler - short description
  *
  * Description: long description
@@ -18,7 +46,7 @@ void _pall_handler(__attribute((unused)) stack_t **stack,
 	current = top;
 	while (current)
 	{
-		printf("%d\n", current->n);
+		_print_number(current->n);
 		current = current->next;
 	}
 }
