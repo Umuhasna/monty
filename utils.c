@@ -7,16 +7,18 @@
  *
  * @string: reference to string
  * @size_of_malloc: int size of malloc
- * @error_message: string error message
+ * @file: string error message
+ * @line: string
  *
  * Return: return description
  */
 char *malloc_char(char **string, size_t size_of_malloc,
-		__attribute((unused)) char *error_message)
+		FILE **file, char **line)
 {
 	*string = (char *) malloc(sizeof(char) * size_of_malloc);
 	if (string == NULL)
 	{
+		free_main_end(line, file);
 		error_message_no_args("Error: malloc failed\n");
 	}
 	return (*string);
@@ -29,16 +31,18 @@ char *malloc_char(char **string, size_t size_of_malloc,
  *
  * @array: reference to string
  * @size_of_malloc: int size of malloc
- * @error_message: string error message
+ * @file: string error message
+ * @line: string
  *
  * Return: return description
  */
 char **malloc_array(char **array, size_t size_of_malloc,
-		__attribute((unused)) char *error_message)
+		FILE **file, char **line)
 {
 	array = (char **) malloc(sizeof(char *) * size_of_malloc);
 	if (array == NULL)
 	{
+		free_main_end(line, file);
 		error_message_no_args("Error: malloc failed\n");
 	}
 	return (array);

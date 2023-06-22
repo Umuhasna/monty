@@ -27,7 +27,7 @@ int error_file_not_found(char *file_name)
 	int size = strlen("Error: Can't open file ") +
 		strlen(file_name) + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "Error: Can't open file ");
 	strcat(error_str, file_name);
 	strcat(error_str, "\n\0");
@@ -54,7 +54,7 @@ int error_opcode_not_found(unsigned int line_number, char *non_valid_opcode,
 		strlen(": unknown instruction ") + strlen(non_valid_opcode)
 		+ strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": unknown instruction ");
@@ -82,7 +82,7 @@ int error_push_non_digit(unsigned int line_number)
 	int size = strlen("L") + strlen(line_number_str) +
 		strlen(": usage: push integer") + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": usage: push integer");
@@ -108,7 +108,7 @@ int error_stack_empty_pint(unsigned int line_number)
 	int size = strlen("L") + strlen(line_number_str) +
 		strlen(": can't pint, stack empty") + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": can't pint, stack empty");

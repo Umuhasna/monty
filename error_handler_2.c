@@ -13,7 +13,7 @@ int error_stack_empty_pop(unsigned int line_number)
 	int size = strlen("L") + strlen(line_number_str) +
 		strlen(": can't pop an empty stack") + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": can't pop an empty stack");
@@ -39,7 +39,7 @@ int error_swap(unsigned int line_number)
 	int size = strlen("L") + strlen(line_number_str) +
 		strlen(": can't swap, stack too short") + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": can't swap, stack too short");
@@ -65,7 +65,7 @@ int error_add(unsigned int line_number)
 	int size = strlen("L") + strlen(line_number_str) +
 		strlen(": can't add, stack too short") + strlen("\n") + 1;
 
-	malloc_char(&error_str, size, "error_not_found Error: malloc error");
+	malloc_char(&error_str, size, NULL, NULL);
 	strcpy(error_str, "L");
 	strcat(error_str, line_number_str);
 	strcat(error_str, ": can't add, stack too short");
