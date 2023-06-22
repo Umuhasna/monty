@@ -37,5 +37,10 @@ int stack_push_handler(char **array_of_tokens, unsigned int *line_number)
 		*line_number = *line_number + 1;
 		return (1);
 	}
+	else
+	{
+		free_array_of_tokens(array_of_tokens);
+		error_push_non_digit(*line_number);
+	}
 	return (0);
 }
