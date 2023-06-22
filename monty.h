@@ -59,6 +59,7 @@ void _div_handler(stack_t **stack, unsigned int line_number);
 void _mul_handler(stack_t **stack, unsigned int line_number);
 void _mod_handler(stack_t **stack, unsigned int line_number);
 void _nop_handler(stack_t **stack, unsigned int line_number);
+void _pchar_handler(stack_t **stack, unsigned int line_number);
 void free_linked_list(void);
 void free_array_of_tokens(char **array_of_tokens);
 void free_main_end(char **line, FILE **file);
@@ -73,6 +74,8 @@ int error_swap(unsigned int line_number);
 int error_add(unsigned int line_number);
 int error_opp(unsigned int line_number, char *op);
 int error_divion_by_zero(unsigned int line_number);
+int error_stack_out_of_range(unsigned int line_number);
+int error_stack_empty_pchar(unsigned int line_number);
 char *_itoa(int line_num);
 int is_number(char *number);
 int stack_push_handler(char **array_of_tokens, unsigned int *line_number,

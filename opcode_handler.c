@@ -24,6 +24,7 @@ int is_opcode(char **array_of_tokens)
 		{"mul", _mul_handler},
 		{"mod", _mod_handler},
 		{"nop", _nop_handler},
+		{"pchar", _pchar_handler},
 		{NULL, NULL}
 	};
 
@@ -67,6 +68,7 @@ int opcode_handler(char **array_of_tokens,
 		{"mul", _mul_handler},
 		{"mod", _mod_handler},
 		{"nop", _nop_handler},
+		{"pchar", _pchar_handler},
 		{NULL, NULL}
 	};
 	if (array_of_tokens == NULL)

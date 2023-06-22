@@ -111,6 +111,21 @@ int main(int argument_count, char **argument_values)
 						error_divion_by_zero(line_number);
 					}
 				}
+				if (strcmp(array_of_tokens[0], "pchar") == 0)
+				{
+					if (_list_length() == 0)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_stack_empty_pchar(line_number);
+					}
+					if (top->n >= 0 && top->n <= 127)
+					{
+						free_array_of_tokens(array_of_tokens);
+						free_main_end(&line, &file);
+						error_stack_out_of_range(line_number);
+					}
+				}
 				if (strcmp(array_of_tokens[0], "nop") != 0
 						|| array_of_tokens[0][0] != '#')
 					opcode_handler(array_of_tokens, NULL, line_number);
