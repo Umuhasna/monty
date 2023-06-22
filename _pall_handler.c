@@ -23,6 +23,7 @@ void _print_number(int line_number)
 	}
 	strcpy(str, number_str);
 	strcat(str, "\n\0");
+	fflush(stdout);
 	write(STDOUT_FILENO, str, strlen(str));
 	free(number_str);
 	free(str);
