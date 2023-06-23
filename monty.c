@@ -39,6 +39,10 @@ int main(int argument_count, char **argument_values)
 					|| strcmp(array_of_tokens[0], "stack") == 0
 					|| strcmp(array_of_tokens[0], "queue") == 0)
 			{
+				if (strcmp(array_of_tokens[0], "stack") == 0)
+					is_stack = 1;
+				else if (strcmp(array_of_tokens[0], "queue") == 0)
+					is_stack = 0;
 				if (strcmp(array_of_tokens[0], "push") == 0 && is_stack)
 				{
 					if (stack_push_handler(array_of_tokens,
@@ -138,10 +142,6 @@ int main(int argument_count, char **argument_values)
 						error_stack_out_of_range(line_number);
 					}
 				}
-				if (strcmp(array_of_tokens[0], "stack") == 0)
-					is_stack = 1;
-				else if (strcmp(array_of_tokens[0], "stack") == 0)
-					is_stack = 0;
 				if (strcmp(array_of_tokens[0], "nop") != 0
 						|| array_of_tokens[0][0] != '#')
 					opcode_handler(array_of_tokens, NULL, line_number);

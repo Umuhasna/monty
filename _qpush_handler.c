@@ -28,6 +28,7 @@ void _qpush_handler(stack_t **stack,
 			{
 				(*stack)->prev = current;
 				current->next = *stack;
+				break;
 			}
 			current = current->next;
 		}
