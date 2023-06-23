@@ -26,6 +26,7 @@ int is_opcode(char **array_of_tokens)
 		{"nop", _nop_handler},
 		{"pchar", _pchar_handler},
 		{"pstr", _pstr_handler},
+		{"rotl", _rotl_handler},
 		{NULL, NULL}
 	};
 
@@ -71,6 +72,7 @@ int opcode_handler(char **array_of_tokens,
 		{"nop", _nop_handler},
 		{"pchar", _pchar_handler},
 		{"pstr", _pstr_handler},
+		{"rotl", _rotl_handler},
 		{NULL, NULL}
 	};
 	if (array_of_tokens == NULL)

@@ -61,6 +61,7 @@ void _mod_handler(stack_t **stack, unsigned int line_number);
 void _nop_handler(stack_t **stack, unsigned int line_number);
 void _pchar_handler(stack_t **stack, unsigned int line_number);
 void _pstr_handler(stack_t **stack, unsigned int line_number);
+void _rotl_handler(stack_t **stack, unsigned int line_number);
 void free_linked_list(void);
 void free_array_of_tokens(char **array_of_tokens);
 void free_main_end(char **line, FILE **file);
