@@ -22,12 +22,12 @@ void _pstr_handler(__attribute((unused)) stack_t **stack,
 	{
 		asciiNumber = current->n;
 		if (asciiNumber == 0)
-			return;
+			break;
 		if (asciiNumber < 0 || asciiNumber > 127)
-			return;
+			break;
 		character = (char) asciiNumber;
 		write(STDOUT_FILENO, &character, 1);
-		write(STDOUT_FILENO, "\n", 1);
 		current = current->next;
 	}
+	write(STDOUT_FILENO, "\n", 1);
 }
