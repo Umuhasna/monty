@@ -27,6 +27,8 @@ int is_number(char *number)
 {
 	int index = 0;
 
+	if (number == NULL)
+		return (0);
 	if (*number == '\0')
 		return (0);
 
