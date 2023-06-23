@@ -14,6 +14,7 @@ int is_opcode(char **array_of_tokens)
 	int opcode_index;
 	const instruction_t opcodes[] = {
 		{"push", _push_handler},
+		{"qpush", _qpush_handler},
 		{"pall", _pall_handler},
 		{"pint", _pint_handler},
 		{"pop", _pop_handler},
@@ -61,6 +62,7 @@ int opcode_handler(char **array_of_tokens,
 	int opcode_index;
 	const instruction_t opcodes[] = {
 		{"push", _push_handler},
+		{"qpush", _qpush_handler},
 		{"pall", _pall_handler},
 		{"pint", _pint_handler},
 		{"pop", _pop_handler},
