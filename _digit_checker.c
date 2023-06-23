@@ -25,24 +25,26 @@ int is_digit(char number)
  */
 int is_number(char *number)
 {
+	int index = 0;
+
 	if (*number == '\0')
 		return (0);
 
 	if (*number == '-' || *number == '+')
 	{
-		number++;
+		index++;
 		if (*number == '\0')
 			return (0);
 	}
 
-	if (*number == '0')
-		return (number[1] == '\0');
+	if (number[index] == '0')
+		return (number[index + 1] == '\0');
 
-	while (*number != '\0')
+	while (number[index] != '\0')
 	{
-		if (!is_digit(*number))
+		if (!is_digit(number[index]))
 			return (0);
-		number++;
+		index++;
 	}
 	return (1);
 }
