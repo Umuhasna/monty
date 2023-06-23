@@ -21,6 +21,7 @@ int main(int argument_count, char **argument_values)
 	ssize_t read = 0;
 	unsigned int line_number = 1;
 	char **array_of_tokens = NULL;
+	int is_stack = 1;
 
 	top = NULL;
 	if (argument_count != 2)
@@ -33,12 +34,23 @@ int main(int argument_count, char **argument_values)
 		array_of_tokens = array_maker(line, " \n\t", &file, &line);
 		if (array_of_tokens != NULL &&  array_of_tokens[0] != NULL)
 		{
-			if (is_opcode(array_of_tokens) || array_of_tokens[0][0] == '#')
+			if (is_opcode(array_of_tokens)
+					|| array_of_tokens[0][0] == '#'
+					|| strcmp(array_of_tokens[0], "stack") == 0
+					|| strcmp(array_of_tokens[0], "queue") == 0)
 			{
-				if (strcmp(array_of_tokens[0], "push") == 0)
+				if (strcmp(array_of_tokens[0], "push") == 0 && is_stack)
+				{
 					if (stack_push_handler(array_of_tokens,
 								&line_number, &line, &file))
 						continue;
+				}
+				else if (strcmp(array_of_tokens[0], "push") == 0 && !is_stack)
+				{
+					if (queue_push_handler(array_of_tokens,
+								&line_number, &line, &file))
+						continue;
+				}
 				if (strcmp(array_of_tokens[0], "pint") == 0)
 					if (top == NULL)
 					{
@@ -126,6 +138,10 @@ int main(int argument_count, char **argument_values)
 						error_stack_out_of_range(line_number);
 					}
 				}
+				if (strcmp(array_of_tokens[0], "stack") == 0)
+					is_stack = 1;
+				else if (strcmp(array_of_tokens[0], "stack") == 0)
+					is_stack = 0;
 				if (strcmp(array_of_tokens[0], "nop") != 0
 						|| array_of_tokens[0][0] != '#')
 					opcode_handler(array_of_tokens, NULL, line_number);

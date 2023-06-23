@@ -49,6 +49,7 @@ int is_opcode(char **array_of_tokens);
 int opcode_handler(char **array_of_tokens,
 		stack_t **stack, unsigned int line_number);
 void _push_handler(stack_t **stack, unsigned int line_number);
+void _qpush_handler(stack_t **stack, unsigned int line_number);
 void _pall_handler(stack_t **stack, unsigned int line_number);
 void _pint_handler(stack_t **stack, unsigned int line_number);
 void _pop_handler(stack_t **stack, unsigned int line_number);
@@ -82,6 +83,8 @@ int error_stack_empty_pchar(unsigned int line_number);
 char *_itoa(int line_num);
 int is_number(char *number);
 int stack_push_handler(char **array_of_tokens, unsigned int *line_number,
+		char **line, FILE **file);
+int queue_push_handler(char **array_of_tokens, unsigned int *line_number,
 		char **line, FILE **file);
 int array_of_tokens_counter(char **array_of_tokens);
 void _print_number(int line_number);
